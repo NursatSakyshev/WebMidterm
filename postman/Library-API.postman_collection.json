@@ -48,7 +48,6 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "// Random ISBN-13 so the request can be run many times without a 409 conflict",
                   "let digits = '978';",
                   "for (let i = 0; i < 10; i++) digits += Math.floor(Math.random() * 10);",
                   "pm.collectionVariables.set('isbn', digits);"

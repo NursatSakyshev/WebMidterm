@@ -9,7 +9,6 @@ const RULES = {
   available: { type: 'boolean' },
 };
 
-// Values used for optional fields that are omitted from a full replacement (PUT)
 const DEFAULTS = {
   isbn: null,
   publishedYear: null,
@@ -64,11 +63,6 @@ function checkField(field, value, rule) {
   }
 }
 
-/**
- * Validates a book payload.
- * partial = false: full object (POST, PUT), title and author are required.
- * partial = true: any subset of fields (PATCH), at least one is required.
- */
 function validateBook(body, { partial = false } = {}) {
   if (body === null || typeof body !== 'object' || Array.isArray(body)) {
     return { errors: ['request body must be a JSON object (Content-Type: application/json)'] };

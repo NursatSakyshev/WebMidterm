@@ -20,7 +20,6 @@ router.param('id', (req, res, next, id) => {
   next();
 });
 
-// GET /api/books - list books (with optional filters and pagination)
 router.get('/', async (req, res) => {
   const { errors, filters } = parseListQuery(req.query);
   if (errors.length > 0) {
@@ -33,7 +32,6 @@ router.get('/', async (req, res) => {
   });
 });
 
-// GET /api/books/:id - get a single book
 router.get('/:id', async (req, res) => {
   const book = await books.findById(req.bookId);
   if (!book) {
@@ -42,7 +40,6 @@ router.get('/:id', async (req, res) => {
   res.json(book);
 });
 
-// POST /api/books - create a book
 router.post('/', async (req, res) => {
   const { errors, data } = validateBook(req.body);
   if (errors.length > 0) {
@@ -52,7 +49,6 @@ router.post('/', async (req, res) => {
   res.status(201).location(`/api/books/${book.id}`).json(book);
 });
 
-// PUT /api/books/:id - replace a book (omitted optional fields are reset)
 router.put('/:id', async (req, res) => {
   const { errors, data } = validateBook(req.body);
   if (errors.length > 0) {
@@ -65,7 +61,6 @@ router.put('/:id', async (req, res) => {
   res.json(book);
 });
 
-// PATCH /api/books/:id - update only the provided fields
 router.patch('/:id', async (req, res) => {
   const { errors, data } = validateBook(req.body, { partial: true });
   if (errors.length > 0) {
@@ -78,7 +73,6 @@ router.patch('/:id', async (req, res) => {
   res.json(book);
 });
 
-// DELETE /api/books/:id - delete a book
 router.delete('/:id', async (req, res) => {
   const deleted = await books.remove(req.bookId);
   if (!deleted) {

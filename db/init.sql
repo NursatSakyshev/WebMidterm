@@ -1,6 +1,3 @@
--- Runs automatically on the first start of the database container
--- (only when the db-data volume is empty).
-
 CREATE TABLE IF NOT EXISTS books (
   id             SERIAL PRIMARY KEY,
   title          VARCHAR(200) NOT NULL,

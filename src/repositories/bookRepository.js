@@ -1,6 +1,5 @@
 const { pool } = require('../db');
 
-// API field name -> database column name
 const COLUMNS = {
   title: 'title',
   author: 'author',
